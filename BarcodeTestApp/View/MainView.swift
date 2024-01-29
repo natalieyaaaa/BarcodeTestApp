@@ -17,6 +17,8 @@ struct MainView: View {
                 
                 if vm.allItems.isEmpty {
                     Text("Tap 📷 to start adding items")
+                        .frame(maxHeight: .infinity, alignment: .center)
+                    Spacer()
                     
                 } else {
                     
@@ -32,8 +34,6 @@ struct MainView: View {
                 }
                 
                 Button {
-//                    requestCameraPermission()
-//                    checkCameraPermission()
                     vm.showAddingView = true
 
                 } label: {
@@ -51,26 +51,6 @@ struct MainView: View {
                         .environmentObject(vm)
                 })
         }
-    
-//    func checkCameraPermission() {
-//           switch AVCaptureDevice.authorizationStatus(for: .video) {
-//           case .authorized:
-//               isCameraAuthorized = true
-//           case .notDetermined:
-//               requestCameraPermission()
-//           default:
-//               isCameraAuthorized = false
-//           }
-//       }
-//
-//       func requestCameraPermission() {
-//           AVCaptureDevice.requestAccess(for: .video) { granted in
-//               DispatchQueue.main.async {
-//                   isCameraAuthorized = granted
-//               }
-//           }
-//       }
-
     }
 
 #Preview {

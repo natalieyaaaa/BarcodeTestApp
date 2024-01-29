@@ -21,6 +21,59 @@ struct ScannerView: View {
             } else {
                 BarcodeScannerView { code in
                     self.scannedCode = code
+                } .overlay {
+                    VStack {
+                        ZStack{
+                            Rectangle()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 200)
+                                .ignoresSafeArea(edges: .all)
+                                .foregroundStyle(.black.opacity(0.7))
+                            
+                            Button {
+                                vm.showAddingView = false
+                            } label: {
+                                Image(systemName: "arrow.left")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 20)
+                                    .padding()
+                                    .background(Circle()
+                                        .foregroundStyle(.white)
+                                        .shadow(radius: 6))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding()
+                                    
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        RoundedRectangle(cornerRadius: 35)
+                            .stroke(lineWidth: 2)
+                            .foregroundStyle(.orange)
+                            .frame(width: 300, height: 100)
+                            .shadow(radius: 3)
+                            
+                        
+                        Spacer()
+                        
+                        ZStack {
+                            Rectangle()
+                                .frame(maxWidth: .infinity)
+                                .frame(height: 200)
+                                .ignoresSafeArea(edges: .all)
+                                .foregroundStyle(.black.opacity(0.7))
+                            
+                            Text("Barcode has to be in the center")
+                                .foregroundStyle(.white)
+                                .fontWeight(.semibold)
+                                .padding()
+                                .background(RoundedRectangle(cornerRadius: 25)
+                                    .foregroundStyle(.black.opacity(0.6)))
+                        }
+
+                    }.edgesIgnoringSafeArea(.all)
                 }
                 
             }

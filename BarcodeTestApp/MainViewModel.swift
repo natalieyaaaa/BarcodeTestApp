@@ -30,9 +30,15 @@ final class MainViewModel: ObservableObject {
     }
     
     func addItem() {
-        guard !allItems.contains(where: {$0.barcode == barcode}) else {showAlert = true; return}
-        guard name != "" && barcode != "" else {return}
+        guard !allItems.contains(where: {$0.barcode == barcode}) else {print("exists"); showAlert = true; return}
+        guard name != "" && barcode != "" else {print("no name"); return}
 
         coreData.saveEntity(barcode: barcode, name: name, brand: brand , addingDate: addingDate)
+        print("ok")
+        
+        showAddingView = false
+        barcode = ""
+        name = ""
+        brand = ""
     }
 }

@@ -16,6 +16,23 @@ struct AddView: View {
     var body: some View {
             VStack(spacing: 20) {
                 
+                Button {
+                    vm.showAddingView = false
+                } label: {
+                    Image(systemName: "arrow.left")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20)
+                        .padding()
+                        .background(Circle()
+                            .foregroundStyle(.white)
+                            .shadow(radius: 6))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                }
+                
+                Spacer()
+                
                 Text("Barcode: \(scannedCode)")
                     .foregroundStyle(.blue)
                     .bold()
@@ -42,7 +59,8 @@ struct AddView: View {
                 
                 Button {
                     vm.addItem()
-                    vm.showAddingView = false
+                    vm.getData()
+                    
                 } label: {
                         Text("Add item")
                             .bold()
@@ -50,13 +68,14 @@ struct AddView: View {
                             .padding(12)
                             .background(RoundedRectangle(cornerRadius: 30)
                                 .foregroundStyle(.green.opacity(0.3)))
-                } 
-                .padding(.top, 50)
-            }/*.onAppear {vm.barcode = scannedCode}*/
+                } .padding(.top, 50)
+                
+                Spacer()
+                
+            }.onAppear {vm.barcode = scannedCode}
             
                 .alert(isPresented: $vm.showAlert, content: {
-                    Alert(title:
-                            Text("This item is already added"))
+                    Alert(title: Text("This item is already added"))
                 })
         }
 }

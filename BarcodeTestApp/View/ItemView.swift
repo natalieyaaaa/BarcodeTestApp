@@ -17,12 +17,15 @@ struct ItemView: View {
         
         VStack(alignment: .leading) {
             Group {
+                
                 Text("Barcode: \(item.barcode!)")
                 Text("Name: \(item.name!)")
                 Text("Brand: \(item.brand!)")
                 Text("Adding date: \(item.addingDate!.formatted())")
+                
             }.fontWeight(.semibold)
                 .foregroundStyle(.blue)
+            
         } .padding()
             .background(RoundedRectangle(cornerRadius: 30)
                 .foregroundStyle(.blue.opacity(0.2)))

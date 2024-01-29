@@ -12,15 +12,19 @@ struct ScannerView: View {
     @State private var scannedCode: String?
     
     @EnvironmentObject var vm: MainViewModel
-
+    
     var body: some View {
         VStack {
+            
             if let scannedCode = scannedCode {
                 AddView(scannedCode: scannedCode)
                     .environmentObject(vm)
+                
             } else {
+                
                 BarcodeScannerView { code in
                     self.scannedCode = code
+                    
                 } .overlay {
                     VStack {
                         ZStack{
@@ -43,7 +47,6 @@ struct ScannerView: View {
                                         .shadow(radius: 6))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .padding()
-                                    
                             }
                         }
                         
@@ -54,7 +57,6 @@ struct ScannerView: View {
                             .foregroundStyle(.orange)
                             .frame(width: 300, height: 100)
                             .shadow(radius: 3)
-                            
                         
                         Spacer()
                         
@@ -72,10 +74,9 @@ struct ScannerView: View {
                                 .background(RoundedRectangle(cornerRadius: 25)
                                     .foregroundStyle(.black.opacity(0.6)))
                         }
-
+                        
                     }.edgesIgnoringSafeArea(.all)
                 }
-                
             }
         }
     }

@@ -38,7 +38,7 @@ class CoreDataManager: ObservableObject {
         entity.name = name
         entity.brand = brand
         entity.addingDate = addingDate
-
+        
         do {
             try persistentContainer.viewContext.save()
             print("saved")
@@ -47,23 +47,23 @@ class CoreDataManager: ObservableObject {
             print("Error saving CoreData entity: \(error.localizedDescription)")
         }
     }
-        
-        func deleteEntity(entity: Item) {
-            persistentContainer.viewContext.delete(entity)
-            updateEntity()
-            print("entity deleted")
-        }
-        
-        func allEntities() -> [Item] {
-            let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
-            do {
-                return try persistentContainer.viewContext.fetch(fetchRequest)
-            } catch let error {
-                print("Error getting all CoreData entities: \(error.localizedDescription)")
-                return []
-            }
+    
+    func deleteEntity(entity: Item) {
+        persistentContainer.viewContext.delete(entity)
+        updateEntity()
+        print("entity deleted")
+    }
+    
+    func allEntities() -> [Item] {
+        let fetchRequest: NSFetchRequest<Item> = Item.fetchRequest()
+        do {
+            return try persistentContainer.viewContext.fetch(fetchRequest)
+        } catch let error {
+            print("Error getting all CoreData entities: \(error.localizedDescription)")
+            return []
         }
     }
+}
 
 // for previews
 extension Item {
